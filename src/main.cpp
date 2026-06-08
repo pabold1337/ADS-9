@@ -1,5 +1,5 @@
 // Copyright 2022 NNTU-CS
-#include "tree.h"
+#include "main.h"
 
 #include <ctime>
 #include <iostream>
