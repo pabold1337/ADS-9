@@ -6,6 +6,8 @@
 #include <vector>
 
 int main() {
+    std::srand(std::time(nullptr));
+
     std::vector<char> input = {'A', 'B', 'C'};
     PMTree tree(input);
 
