@@ -1,6 +1,8 @@
 // Copyright 2022 NNTU-CS
 #include "tree.h"
 #include <algorithm>
+#include <cstdint>
+#include <vector>
 
 void PMTree::buildTree(Node* node, std::vector<char> remaining) {
     if (remaining.empty()) return;
@@ -37,7 +39,8 @@ Node* PMTree::getRoot() const {
     return root;
 }
 
-static void dfs(Node* node, std::vector<char>& current, std::vector<std::vector<char>>& result) {
+static void dfs(Node* node, std::vector<char>& current,
+                std::vector<std::vector<char>>& result) {
     if (node->value != '\0') current.push_back(node->value);
     if (node->children.empty()) {
         if (!current.empty()) result.push_back(current);
@@ -57,13 +60,13 @@ std::vector<std::vector<char>> getAllPerms(const PMTree& tree) {
 }
 
 std::vector<char> getPerm1(const PMTree& tree, int num) {
-    auto all = getAllPerms(tree);
+    std::vector<std::vector<char>> all = getAllPerms(tree);
     if (num < 1 || num > static_cast<int>(all.size())) return {};
     return all[num - 1];
 }
 
-static long long factorial(int n) {
-    long long result = 1;
+static int64_t factorial(int n) {
+    int64_t result = 1;
     for (int i = 2; i <= n; ++i) result *= i;
     return result;
 }
@@ -75,18 +78,18 @@ std::vector<char> getPerm2(const PMTree& tree, int num) {
     }
     std::sort(available.begin(), available.end());
     int n = static_cast<int>(available.size());
-    long long total = factorial(n);
-    if (num < 1 || num > total) return {};
+    int64_t total = factorial(n);
+    if (num < 1 || num > static_cast<int>(total)) return {};
 
     std::vector<char> result;
     int idx = num - 1;
     int remaining = n;
     while (remaining > 0) {
-        long long block = factorial(remaining - 1);
-        int choice = idx / block;
+        int64_t block = factorial(remaining - 1);
+        int choice = static_cast<int>(idx / block);
         result.push_back(available[choice]);
         available.erase(available.begin() + choice);
-        idx %= block;
+        idx = idx % static_cast<int>(block);
         --remaining;
     }
     return result;
