@@ -40,12 +40,12 @@ int main() {
         clock_t start1 = clock();
         std::vector<std::vector<char>> perms = getAllPerms(bigTree);
         clock_t end1 = clock();
-        double time1 = double(end1 - start1) / CLOCKS_PER_SEC;
+        double time1 = static_cast<double>(end1 - start1) / CLOCKS_PER_SEC;
 
         clock_t start2 = clock();
         std::vector<char> perm2 = getPerm2(bigTree, 1);
         clock_t end2 = clock();
-        double time2 = double(end2 - start2) / CLOCKS_PER_SEC;
+        double time2 = static_cast<double>(end2 - start2) / CLOCKS_PER_SEC;
 
         std::cout << n << " " << time1 << " " << time2 << std::endl;
     }
