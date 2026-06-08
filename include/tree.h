@@ -7,7 +7,7 @@
 struct Node {
     char value;
     std::vector<Node*> children;
-    Node(char val) : value(val) {}
+    explicit Node(char val) : value(val) {}
 };
 
 class PMTree {
