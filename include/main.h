@@ -1,6 +1,8 @@
+// Copyright 2022 NNTU-CS
+
 #ifndef INCLUDE_MAIN_H_
 #define INCLUDE_MAIN_H_
 
-// пустой заголовочный файл для main.cpp
+#include "tree.h"
 
-#endif
+#endif  // INCLUDE_MAIN_H_
